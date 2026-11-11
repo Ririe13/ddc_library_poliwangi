@@ -75,6 +75,7 @@ st.markdown(
     """
     <style>
     :root {
+        color-scheme: light;
         --brand: #2558df;
         --brand-dark: #1f4fc8;
         --text: #243447;
@@ -83,7 +84,7 @@ st.markdown(
         --panel: #ffffff;
         --bg: #f7f9fc;
     }
-    .stApp { background: var(--bg); }
+    .stApp { background: var(--bg); color: var(--text); }
     .stApp > header { background: transparent; }
     #MainMenu, header[data-testid="stHeader"], .stDeployButton, [data-testid="stToolbar"] {
         visibility: hidden; height: 0; min-height: 0;
@@ -110,14 +111,39 @@ st.markdown(
     .hero h1 { font-size: 2.05rem; line-height: 1.2; margin: 0; color: var(--text); font-weight: 800; }
     .hero p { margin: 0.45rem 0 0; color: var(--muted); font-size: 1.02rem; }
     .section-divider { border-top: 1px solid rgba(216,222,233,0.8); margin: 1.2rem 0 1.8rem; }
+
+    /* ---------- Label ---------- */
     div[data-testid="stTextInput"] label,
-    div[data-testid="stTextArea"] label { font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    div[data-testid="stTextArea"] label,
+    div[data-testid="stTextInput"] label p,
+    div[data-testid="stTextArea"] label p {
+        font-weight: 700; color: var(--text) !important; margin-bottom: 0.25rem;
+    }
+
+    /* ---------- Input & Textarea ---------- */
+    div[data-testid="stTextInput"] div[data-baseweb="input"],
+    div[data-testid="stTextInput"] div[data-baseweb="base-input"],
+    div[data-testid="stTextArea"] div[data-baseweb="textarea"],
+    div[data-testid="stTextArea"] div[data-baseweb="base-input"] {
+        background-color: #fff !important;
+    }
     div[data-testid="stTextInput"] input,
     div[data-testid="stTextArea"] textarea {
         border-radius: 6px; border: 1px solid #d6dbe6;
-        background: #fff; box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
+        background: #fff !important; box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
+        color: var(--text) !important;
+        -webkit-text-fill-color: var(--text) !important;
+        caret-color: var(--text);
+    }
+    div[data-testid="stTextInput"] input::placeholder,
+    div[data-testid="stTextArea"] textarea::placeholder {
+        color: #98a2b3 !important;
+        -webkit-text-fill-color: #98a2b3 !important;
+        opacity: 1;
     }
     div[data-testid="stTextArea"] textarea { min-height: 92px; }
+
+    /* ---------- Tombol submit ---------- */
     div[data-testid="stFormSubmitButton"] { margin-top: 26px; }
     div[data-testid="stFormSubmitButton"] button {
         height: 44px; width: 44px; margin-top: 0; padding: 0;
@@ -137,6 +163,8 @@ st.markdown(
     div[data-testid="stFormSubmitButton"] button:active {
         background-color: #5f79e6; transform: none; box-shadow: none;
     }
+
+    /* ---------- Hasil ---------- */
     .results-title { font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 1.4rem 0 0.55rem; }
     .panel {
         background: var(--panel); border: 1px solid var(--line);
